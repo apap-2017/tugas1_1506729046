@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="include/head"></div>
+<body>
+<div th:replace="include/navbar"></div>
+<div class="container">
+
+
+    <div class="container-fluid">
+        <h3 class="bold" th:text="'Lihat Data Penduduk - ' + ${pendudukModel.nik}"></h3>
+    </div>
+    <hr/>
+    <div class="container fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="bold">NIK</p>
+                <p class="bold">Nama</p>
+                <p class="bold">Jenis Kelamin</p>
+                <p class="bold">Tempat/Tanggal Lahir</p>
+                <p class="bold">Alamat</p>
+                <p class="bold">RT/RW</p>
+                <p class="bold">Kelurahan/Desa</p>
+                <p class="bold">Kecamatan</p>
+                <p class="bold">Kota</p>
+                <p class="bold">Golongan Darah</p>
+                <p class="bold">Agama</p>
+                <p class="bold">Status Perkawinan</p>
+                <p class="bold">Pekerjaan</p>
+                <p class="bold">Kewarnegaraan</p>
+                <p class="bold">Status Kematian</p>
+            </div>
+
+            <div class="col-md-3">
+                <p th:text="${pendudukModel.nik}">NIK</p>
+                <p th:text="${pendudukModel.nama}">Nama</p>
+                <p th:text="${pendudukModel.jenis_kelamin}">Nama</p>
+                <p th:text="${pendudukModel.tempat_lahir} + '/' + ${pendudukModel.tanggal_lahir}">Tempat/Tanggal Lahir</p>
+                <p th:text="${keluargaModel.alamat}">Alamat</p>
+                <p th:text="${keluargaModel.rt} + '/' + ${keluargaModel.rw}">RT/RW</p>
+                <p th:text="${kelurahan.nama_kelurahan}">Kelurahan/Desa</p>
+                <p th:text="${kecamatan.nama_kecamatan}">Kecamatan</p>
+                <p th:text="${kota.nama_kota}">Kota</p>
+                <p th:text="${pendudukModel.golongan_darah}">Golongan Darah</p>
+                <p th:text="${pendudukModel.agama}">Agama</p>
+                <p th:text="${pendudukModel.status_perkawinan}">Status Perkawinan</p>
+                <p th:text="${pendudukModel.pekerjaan}">Pekerjaan</p>
+                <p th:text="${pendudukModel.is_wni}">Kewarnegaraan</p>
+                <p th:text="${pendudukModel.is_wafat}">Status Kematian</p>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+
+    <a class="btn btn-primary" th:href="'/pendudukModel/ubah/' + ${pendudukModel.nik}" th:text="Update"></a>
+
+    <!-- tombol nonaktif -->
+    <div class="container-fluid">
+        <form method="post" th:action="'/pendudukModel/mati'">
+            <input type="hidden" name="nik" th:value="${pendudukModel.nik}" />
+            <button type="submit" class="btn btn-danger">Nonaktifkan</button>
+        </form>
+    </div>
+
+    <!-- tombol lihar keluarga -->
+    <div>
+        <form method="get" th:action="'/keluarga'">
+            <input type="hidden" name="nkk" th:value="${keluargaModel.nomor_kk}" />
+            <button type="submit" class="btn btn-default">Lihat Keluarga</button>
+        </form>
+    </div>
+
+    <div th:replace="include/footer"></div>
+
+</div>
+</body>
+</html>

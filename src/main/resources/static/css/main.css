@@ -1,0 +1,20 @@
+.bold{
+    font-weight: bold;
+}
+
+.container-fluid{
+    padding: 10px 0;
+}
+
+.form-control{
+    width: 350px;
+}
+
+.center{
+    text-align: center;
+}
+
+footer{
+    text-align: center;
+    margin: 20px 0;
+}
